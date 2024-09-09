@@ -6,6 +6,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
 const Create = () => {
+  
   const navigate = useNavigate();
   const { user } = useContext(AuthContext);
   const [name, setName] = useState('');
@@ -22,7 +23,7 @@ const Create = () => {
     }
 
     const formData = new FormData();
-    formData.append('image', image);
+    formData.append('file', image);
     formData.append('category', category);
     formData.append('price', price);
     formData.append('name', name);
@@ -37,7 +38,7 @@ const Create = () => {
       });
       console.log(response.data);
       alert('Uploaded successfully');
-      // navigate('/');
+      navigate('/');
     } catch (err) {
       console.error(err);
       alert('Error uploading data');
@@ -99,9 +100,3 @@ const Create = () => {
 };
 
 export default Create;
-
-
-// Upload image to Firebase Storage
-      // const imageRef = ref(storage, `images/${image.name}`);
-      // await uploadBytes(imageRef, image);
-      // const imageUrl = await getDownloadURL(imageRef);
